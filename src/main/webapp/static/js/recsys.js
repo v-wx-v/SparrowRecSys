@@ -100,6 +100,9 @@ function addRowFrameWithoutLink(pageId, rowName, rowId, baseUrl) {
 function addGenreRow(pageId, rowName, rowId, size, baseUrl) {
     addRowFrame(pageId, rowName, rowId, baseUrl);
     $.getJSON(baseUrl + "getrecommendation?genre="+rowName+"&size="+size+"&sortby=rating", function(result){
+
+
+
         $.each(result, function(i, movie){
           appendMovie2Row(rowId, movie.title, movie.movieId, movie.releaseYear, movie.averageRating.toPrecision(2), movie.ratingNumber, movie.genres,baseUrl);
         });

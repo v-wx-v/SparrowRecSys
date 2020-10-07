@@ -98,7 +98,7 @@ object FeatureEngineering {
       .set("spark.submit.deployMode", "client")
 
     val spark = SparkSession.builder.config(conf).getOrCreate()
-    val movieResourcesPath = this.getClass.getResource("/webroot/sampledata/movies.csv")
+    val movieResourcesPath = this.getClass.getResource("/sampledata/movies.csv")
     val movieSamples = spark.read.format("csv").option("header", "true").load(movieResourcesPath.getPath)
     println("Raw Movie Samples:")
     movieSamples.printSchema()
@@ -111,7 +111,7 @@ object FeatureEngineering {
     multiHotEncoderExample(movieSamples)
 
     println("Numerical features Example:")
-    val ratingsResourcesPath = this.getClass.getResource("/webroot/sampledata/ratings.csv")
+    val ratingsResourcesPath = this.getClass.getResource("/sampledata/ratings.csv")
     val ratingSamples = spark.read.format("csv").option("header", "true").load(ratingsResourcesPath.getPath)
     ratingFeatures(ratingSamples)
 

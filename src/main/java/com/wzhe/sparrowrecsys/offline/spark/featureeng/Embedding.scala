@@ -58,7 +58,7 @@ object Embedding {
       println(s"$synonym $cosineSimilarity")
     }
 
-    val embFolderPath = this.getClass.getResource("/webroot/modeldata/")
+    val embFolderPath = this.getClass.getResource("/modeldata/")
     val file = new File(embFolderPath.getPath + embOutputFilename)
     val bw = new BufferedWriter(new FileWriter(file))
     for (movieId <- model.getVectors.keys) {
@@ -188,7 +188,7 @@ object Embedding {
 
     val spark = SparkSession.builder.config(conf).getOrCreate()
 
-    val rawSampleDataPath = "/webroot/sampledata/ratings.csv"
+    val rawSampleDataPath = "/sampledata/ratings.csv"
 
     val samples = processItemSequence(spark, rawSampleDataPath)
     trainItem2vec(samples, "item2vecEmb.csv", saveToRedis = true, "i2vEmb")
